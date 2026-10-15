@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,6 @@ public class Reader {
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
     private String lastName;
 
     @Column(nullable = false, unique = true)
@@ -34,7 +33,7 @@ public class Reader {
     private String phone;
 
     @Column(nullable = false)
-    private LocalDate registrationDate;
+    private LocalDateTime registrationDate;
 
     @OneToMany(mappedBy = "reader", orphanRemoval = true)
     private List<BookLoans> bookLoansList = new ArrayList<>();
