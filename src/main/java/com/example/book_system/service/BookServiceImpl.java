@@ -20,6 +20,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto createBook(NewBookDto bookDto) {
         Book book = BookMapper.toEntity(bookDto);
+        book.setAvailableCopies(book.getTotalCopies());
         return BookMapper.toDto(bookRepository.save(book));
     }
 
@@ -31,8 +32,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> getAllBooks() {
-        return BookMapper.toDto(bookRepository.findAll());
+    public List<BookDto> getAllBooks(String title, String author) {
+        return BookMapper.toDto(bookRepository.findAll(title, author));
     }
 
     @Override

@@ -30,10 +30,11 @@ public class BookController {
                 .ok(bookService.getBookById(id));
     }
 
-    @GetMapping
-    public ResponseEntity<List<BookDto>> getAllBooks() {
+    @GetMapping("/search")
+    public ResponseEntity<List<BookDto>> getAllBooks(@RequestParam(required = false) String title,
+                                                     @RequestParam(required = false) String author) {
         return ResponseEntity
-                .ok(bookService.getAllBooks());
+                .ok(bookService.getAllBooks(title, author));
     }
 
     @PutMapping

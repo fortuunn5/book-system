@@ -10,7 +10,7 @@ public interface BookService {
 
     BookDto getBookById(Long id);
 
-    List<BookDto> getAllBooks();
+    List<BookDto> getAllBooks(String title, String author);
 
     BookDto updateBook(BookDto book);
 
