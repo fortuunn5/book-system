@@ -9,11 +9,12 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "book_loans")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookLoans {
+public class BookLoan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +33,6 @@ public class BookLoans {
     @Column(nullable = false)
     private LocalDate dueDate;
 
-    @Column(nullable = false)
     private LocalDate returnDate;
 
     @Column(nullable = false)

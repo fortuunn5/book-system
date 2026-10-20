@@ -14,8 +14,8 @@ public record NewBookDto(
 
         Integer publicationYear,
 
-        @Min(value = 0, message = "Total copies >= 0") Integer totalCopies,
+        @Min(value = 0, message = "Total copies >= 0") Integer totalCopies
 
-        @Min(value = 0, message = "Available copies >= 0") Integer availableCopies
+//        @Min(value = 0, message = "Available copies >= 0") Integer availableCopies
 ) {
 }

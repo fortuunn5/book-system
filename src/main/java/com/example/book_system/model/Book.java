@@ -43,5 +43,9 @@ public class Book {
     private Integer availableCopies;
 
     @OneToMany(mappedBy = "book")
-    private List<BookLoans> bookLoansList = new ArrayList<>();
+    private List<BookLoan> bookLoanList = new ArrayList<>();
+
+    public Book(Long id) {
+        this.id = id;
+    }
 }

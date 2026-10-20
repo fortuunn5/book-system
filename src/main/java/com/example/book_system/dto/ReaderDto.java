@@ -1,6 +1,5 @@
 package com.example.book_system.dto;
 
-import com.example.book_system.model.BookLoans;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -25,6 +24,6 @@ public record ReaderDto(
 
         LocalDateTime registrationDate,
 
-        List<BookLoans> bookLoansList
+        List<BookLoanDto> bookLoanList
 ) {
 }

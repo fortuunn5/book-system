@@ -22,3 +22,6 @@ spring:
 server:
   servlet:
     context-path: /api
+
+book-system:
+    due-period-weeks: 4

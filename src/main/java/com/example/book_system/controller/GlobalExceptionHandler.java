@@ -1,5 +1,6 @@
 package com.example.book_system.controller;
 
+import com.example.book_system.exception.BookNotAvailableException;
 import com.example.book_system.exception.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +37,10 @@ public class GlobalExceptionHandler {
                     .body(ex.getMessage());
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(BookNotAvailableException.class)
+    public ResponseEntity<?> BookNotAvailableException(Exception ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 }

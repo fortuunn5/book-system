@@ -4,6 +4,7 @@ import com.example.book_system.dto.BookDto;
 import com.example.book_system.dto.NewBookDto;
 import com.example.book_system.model.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookMapper {
@@ -16,7 +17,7 @@ public class BookMapper {
                 bookDto.publicationYear(),
                 bookDto.totalCopies(),
                 bookDto.availableCopies(),
-                bookDto.bookLoansList());
+                BookLoanMapper.toEntity(bookDto.bookLoanList()));
     }
 
     public static BookDto toDto(Book book) {
@@ -28,11 +29,14 @@ public class BookMapper {
                 book.getPublicationYear(),
                 book.getTotalCopies(),
                 book.getAvailableCopies(),
-                book.getBookLoansList()
+                BookLoanMapper.toDto(book.getBookLoanList())
         );
     }
 
     public static List<Book> toEntity(List<BookDto> bookDtoList) {
+        if (bookDtoList == null || bookDtoList.isEmpty()) {
+            return new ArrayList<>();
+        }
         return bookDtoList.stream()
                 .map(BookMapper::toEntity)
                 .toList();
@@ -52,7 +56,7 @@ public class BookMapper {
                 newBookDto.isbn(),
                 newBookDto.publicationYear(),
                 newBookDto.totalCopies(),
-                newBookDto.availableCopies(),
+                newBookDto.totalCopies(),
                 null
         );
     }

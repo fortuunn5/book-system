@@ -36,5 +36,9 @@ public class Reader {
     private LocalDateTime registrationDate;
 
     @OneToMany(mappedBy = "reader", orphanRemoval = true)
-    private List<BookLoans> bookLoansList = new ArrayList<>();
+    private List<BookLoan> bookLoanList = new ArrayList<>();
+
+    public Reader(Long id) {
+        this.id = id;
+    }
 }

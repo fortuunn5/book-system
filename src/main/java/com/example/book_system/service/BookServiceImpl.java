@@ -2,6 +2,7 @@ package com.example.book_system.service;
 
 import com.example.book_system.dto.BookDto;
 import com.example.book_system.dto.NewBookDto;
+import com.example.book_system.exception.BookNotAvailableException;
 import com.example.book_system.exception.EntityNotFoundException;
 import com.example.book_system.mapper.BookMapper;
 import com.example.book_system.model.Book;
@@ -43,5 +44,21 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteBookById(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public void takeBook(Long bookId) {
+        int res = bookRepository.decrementAvailable(bookId);
+        if (res == 0) {
+            throw new BookNotAvailableException("No available copies of this book");
+        }
+    }
+
+    @Override
+    public void returnBook(Long bookId) {
+        int res = bookRepository.incrementAvailable(bookId);
+        if (res == 0) {
+            throw new RuntimeException();
+        }
     }
 }

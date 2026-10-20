@@ -1,6 +1,5 @@
 package com.example.book_system.dto;
 
-import com.example.book_system.model.BookLoans;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -24,6 +23,6 @@ public record BookDto(
 
         @Min(value = 0, message = "Available copies >= 0") Integer availableCopies,
 
-        List<BookLoans> bookLoansList
+        List<BookLoanDto> bookLoanList
 ) {
 }

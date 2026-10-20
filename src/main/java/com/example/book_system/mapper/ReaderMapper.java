@@ -4,6 +4,7 @@ import com.example.book_system.dto.NewReaderDto;
 import com.example.book_system.dto.ReaderDto;
 import com.example.book_system.model.Reader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReaderMapper {
@@ -15,7 +16,7 @@ public class ReaderMapper {
                 readerDto.email(),
                 readerDto.phone(),
                 readerDto.registrationDate(),
-                readerDto.bookLoansList()
+                BookLoanMapper.toEntity(readerDto.bookLoanList())
         );
     }
 
@@ -27,7 +28,7 @@ public class ReaderMapper {
                 reader.getEmail(),
                 reader.getPhone(),
                 reader.getRegistrationDate(),
-                reader.getBookLoansList()
+                BookLoanMapper.toDto(reader.getBookLoanList())
         );
     }
 
@@ -38,6 +39,9 @@ public class ReaderMapper {
     }
 
     public static List<Reader> toEntity(List<ReaderDto> readerDtoList) {
+        if (readerDtoList == null || readerDtoList.isEmpty()) {
+            return new ArrayList<>();
+        }
         return readerDtoList.stream()
                 .map(ReaderMapper::toEntity)
                 .toList();
